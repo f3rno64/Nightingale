@@ -23,7 +23,7 @@ html(lang="en")
     section
       header.main
         h1 Nightingale
-        .teaser An authentic twitter drafter
+        .subtitle An authentic twitter drafter
 
     section
       .sidebar
@@ -34,18 +34,67 @@ html(lang="en")
 
         h3 Tags
         ul
-          a.active(href="#"): li Finance
+          a(href="#"): li Finance
           a(href="#"): li Quotes
           a(href="#"): li Productivity
-          a(href="#"): li Startups
+          a.active(href="#"): li Startups
           a(href="#"): li Flames
 
       .content-wrapper
         header
-          h2 Finance
-          .controls
-            i.fa.fa-th-large
-            i.active.fa.fa-th-list
+          h2 Startups
+          .subtitle 5 sizzling drafts
+
+        ul
+          li.tweet
+            p
+              | I am reading &ldquo;The Hard Thing About Hard Things&rdquo; along with another CEO, it is really the best book on startups. Training section 
+              a(href="#") #dmorOH
+
+            ul.tags
+              li: a(href="#") #startups
+              li: a(href="#") #books
+
+          li.tweet
+            p Crowdsourcing will soon be embedded in every online activity.
+
+            ul.tags
+              li: a(href="#") #startups
+              li: a(href="#") #opinion
+
+          li.tweet
+            p
+              | If you, say, got stuck in your 
+              a(href="#") #startup
+              | &rsquo;s growth process, and someone said, &ldquo;hey, here&rsquo;s a checklist that could help!&rdquo;, would you be happy?
+
+            ul.tags
+              li: a(href="#") #startups
+              li: a(href="#") #questions
+              li: a(href="#") #research
+
+          li.tweet
+            p
+              | &ldquo;Almost every business idea is guaranteed not to work out the first try. Validate, validate, validate.&rdquo; 
+              a(href="#") @noahkagan
+              | 
+              a(href="#") #leanstartup
+              | 
+              a(href="#") #tacoshirt
+
+            ul.tags
+              li: a(href="#") #startups
+              li: a(href="#") #books
+
+          li.tweet
+            p
+              | &ldquo;I am reading "The Hard Thing About Hard Things" along with another CEO, it is really the best book on startups. Training section 
+              a(href="#") #dmorOH
+              | &rdquo;
+
+            ul.tags
+              li: a(href="#") #startups
+              li: a(href="#") #books
 
     //- Vendor libs
     script(src="/components/lodash/dist/lodash.min.js")
