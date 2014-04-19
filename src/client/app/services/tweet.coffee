@@ -1,10 +1,7 @@
-# This currently uses localStorage; Needs to be updated to use a persistent
-# API in the future...
-
 angular.module("App").service "TweetService", [
   "Tweet"
-  "$location"
-  (Tweet, $location) ->
+  "$rootScope"
+  (Tweet, $rootScope) ->
 
     cache = new ServiceCache
 
@@ -24,10 +21,17 @@ angular.module("App").service "TweetService", [
           cache.setItem tweet
           cb tweet
 
+      deleteTweet: (id, cb) ->
+        Tweet.delete id: id, ->
+          cache.clearItem id
+          $rootScope.$broadcast "refreshTweets"
+          cb() if cb
+
       save: (tweet, cb, errcb) ->
         cache.setItem tweet
 
-        Tweet.$save().then ->
+        tweet.$save().then ->
+          $rootScope.$broadcast "refreshTweets"
           cb tweet
         , ->
           errcb()

@@ -113,4 +113,8 @@ class APIBase
       next()
     ) req, res, next
 
+  isLoggedIn: (req, res, next) ->
+    if req.isAuthenticated() then next()
+    else res.redirect "/login"
+
 module.exports = APIBase

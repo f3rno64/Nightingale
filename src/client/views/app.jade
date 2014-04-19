@@ -22,7 +22,9 @@ html(lang="en" ng-app="App")
     section
       header.main
         h1 Nightingale
-        .subtitle An authentic twitter drafter
+        .subtitle(class="{{ notification.getColor() }}" ng-cloak) {{ notification.getText() }}
+
+        a.subtitle.right(ng-click="showTweetForm()") Write new draft
 
     section
       .sidebar
@@ -36,7 +38,30 @@ html(lang="en" ng-app="App")
           a(href="/tags/all"): li All
           a(ng-href="/tags/{{ tag }}" ng-repeat="tag in tags"): li {{ tag }}
 
-      .content-wrapper(ng-view="")
+      .content-wrapper
+
+        div(ng-if="composing")
+          header
+
+            div(ng-if="!editing")
+              h2 Write new draft
+              .subtitle Make it awesome!
+            div(ng-if="editing")
+              h2 Edit draft
+              .subtitle Make it pop :)
+
+            .subtitle.right {{ getFormRemainingChars() }}
+
+          .tweet.compose
+            textarea(maxlength="140" rows="4" placeholder="Enter tweet" ng-model="newTweet.content")
+
+            .tags: input(type="text" placeholder="Enter tags" ng-model="newTweet.unsplitTags")
+
+            .actions
+              li: a(ng-click="submitTweet()") save
+              li: a(ng-click="closeTweetForm()") cancel
+
+        div(ng-view="")
 
     //- Vendor libs
     script(src="/components/lodash/dist/lodash.min.js")
@@ -53,6 +78,7 @@ html(lang="en" ng-app="App")
 
     script(src="/js/services/tweet.js")
     script(src="/js/services/user.js")
+    script(src="/js/services/notification.js")
 
     script(src="/js/controllers/root.js")
     script(src="/js/controllers/account.js")

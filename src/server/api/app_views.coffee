@@ -10,10 +10,6 @@ class APIAppViews extends APIBase
   constructor: (@app) ->
     @registerRoutes()
 
-  isLoggedIn: (req, res, next) ->
-    if req.isAuthenticated() then next()
-    else res.redirect "/login"
-
   registerRoutes: ->
 
     # Serve layout to each path

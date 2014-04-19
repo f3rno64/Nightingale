@@ -1,10 +1,23 @@
 header
   h2 Startups
-  .subtitle 5 sizzling drafts
+  .subtitle(ng-pluralize count="tweets.length" when="{ '0': 'You don\\'t have any drafts ;(', 'one': 'You have 1 draft', 'other': 'You have {} drafts' }")
 
   img.right(src="https://pbs.twimg.com/profile_images/446610898900115457/TTM9XNng_bigger.png" height="48")
 
 ul
+  li.tweet(ng-repeat="tweet in tweets")
+    p {{ tweet.content }}
+
+    ul.tags
+      li(ng-repeat="tag in tweet.tags")
+        a(ng-href="/tag/{{ tag }}") \#{{ tag }}
+
+    ul.actions
+      li: a(ng-click="consumeTweet(tweet.id)") tweet
+      li: a(ng-click="editTweet(tweet.id)") edit
+      li: a(ng-click="deleteTweet(tweet.id)") delete
+
+//- ul
   li.tweet
     p
       | I am reading &ldquo;The Hard Thing About Hard Things&rdquo; along with another CEO, it is really the best book on startups. Training section 

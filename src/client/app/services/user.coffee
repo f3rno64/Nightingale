@@ -1,7 +1,6 @@
 angular.module("App").service "UserService", [
   "User"
-  "$http"
-  (User, $http) ->
+  (User) ->
 
     service =
       getUser: (cb) ->

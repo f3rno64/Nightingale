@@ -7,7 +7,7 @@ nodemon = require "gulp-nodemon"
 
 paths =
   lib: "src/client/app/**/*.coffee"
-  styl: "src/client/styles/style.styl"
+  styl: "src/client/styles/**/*.styl"
 
 # Compile stylus
 gulp.task "stylus", ->

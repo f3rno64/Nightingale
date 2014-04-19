@@ -1,5 +1,14 @@
-header.main
-  margin-bottom 32px
+header
+  position relative
+
+  &.main
+    margin-bottom 32px
+
+  .right
+    float none
+    position absolute
+    right 0
+    bottom 0
 
 section
   .sidebar, .content-wrapper
@@ -32,7 +41,7 @@ section
         border-left 1px solid #999
 
   .content-wrapper
-    width 75%
+    width 800px
 
     header
       position relative
@@ -41,11 +50,6 @@ section
       *
         display inline-block
         vertical-align top
-
-      .right
-        position absolute
-        top 0
-        right 0
 
       img
         border 2px solid #ccc

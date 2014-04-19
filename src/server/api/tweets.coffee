@@ -3,6 +3,7 @@ db = require "mongoose"
 async = require "async"
 _ = require "lodash"
 APIBase = require "./base"
+S = require "string"
 
 class APITweets extends APIBase
 
@@ -26,18 +27,60 @@ class APITweets extends APIBase
   ###
   registerRoutes: ->
 
-    ###
-    # GET /api/v1/tweets
-    #   Returns a list of all owned Tweets
-    # @response [Array<Object>] Tweets a list of Tweets
-    # @example
-    #   $.ajax method: "GET",
-    #          url: "/api/v1/tweets"
-    ###
-    @app.get "/api/v1/tweets", @apiLogin, (req, res) =>
+    @app.get "/api/v1/tweets", @isLoggedIn, (req, res) =>
       @queryOwner req.user.id, res, (tweets) ->
         return res.json 200, [] if tweets.length == 0
 
         res.json _.map tweets, (t) -> t.toAnonAPI()
+
+    @app.post "/api/v1/tweets", @isLoggedIn, (req, res) =>
+      return res.send 400 unless req.body.content
+      return res.send 400 unless req.body.tags or req.body.unsplitTags
+
+      unproccessedTags = req.body.unsplitTags.split(",") or req.body.tags
+      tags = _.map unproccessedTags, (tag) -> S(tag.replace(/\W/g, "")).trim().s
+
+      tweet = db.model("Tweet")
+        owner: req.user.id
+        content: req.body.content
+        tags: tags
+
+      tweet.save (err) ->
+        if err
+          spew.error err
+          return res.send 500
+
+        res.json tweet.toAnonAPI()
+
+    @app.post "/api/v1/tweets/:id", @isLoggedIn, (req, res) =>
+      return res.send 400 unless req.body.content
+      return res.send 400 unless req.body.tags or req.body.unsplitTags
+
+      unproccessedTags = req.body.unsplitTags.split(",") or req.body.tags
+      tags = _.map unproccessedTags, (tag) -> S(tag.replace(/\W/g, "")).trim().s
+
+      @queryId req.params.id, res, (tweet) ->
+        return res.send 404 unless tweet
+
+        tweet.tags = tags
+        tweet.content = req.body.content
+
+        tweet.save (err) ->
+          if err
+            spew.error err
+            return res.send 500
+
+          res.json tweet.toAnonAPI()
+
+    @app.delete "/api/v1/tweets/:id", @isLoggedIn, (req, res) =>
+      @queryId req.params.id, res, (tweet) ->
+        return res.send 404 unless tweet
+
+        tweet.remove (err) ->
+          if err
+            spew.error err
+            return res.send 500
+
+          res.send 200
 
 module.exports = (app) -> new APITweets app

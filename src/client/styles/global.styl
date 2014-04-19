@@ -6,6 +6,9 @@ body
 h1, h2, h3, h4, h5, h6
   font-family "sail", fantasy
 
+.right
+  float right
+
 h1
   font-size 48px
 
@@ -21,10 +24,12 @@ a
 
   &:hover
     text-decoration underline
+    cursor pointer
 
 section
   width 960px
   margin 0 auto
+  position relative
 
   padding-top 16px
 
@@ -33,3 +38,13 @@ section
   margin-top 8px
   font-style italic
   color #999
+
+textarea, input
+  width 100%
+  border 1px solid #eee
+  padding 8px
+
+  font-family "calluna", serif
+  font-size 18px
+
+  color #333 !important
