@@ -11,7 +11,7 @@ module.exports = (express, cb) ->
   passport.use new TwitterStrategy
     consumerKey: config "twitter_consumer_key"
     consumerSecret: config "twitter_consumer_secret"
-    callbackURL: "http://nightingale.dev:#{config "port"}/auth/twitter/callback"
+    callbackURL: "http://www.nightingale.dev/auth/twitter/callback"
   , (token, tokenSecret, profile, done) ->
 
     mongoose.model("User").findOne twitterId: Number(profile.id), (err, user) ->

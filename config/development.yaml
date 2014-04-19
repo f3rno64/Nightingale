@@ -1,6 +1,6 @@
 ---
-domain: localhost
-port: 9000
+domain: www.nightingale.dev
+port: 5050
 loglevel: 10
 
 mongo_user: nightingale
