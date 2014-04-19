@@ -16,6 +16,8 @@
     "angular-route": "=1.2.13",
     "angular-ui-select2": "~0.0.5",
     "select2": "~3.4.5",
-    "pace": "~0.4.17"
+    "pace": "~0.4.17",
+    "fontawesome": "~4.0.3",
+    "lodash": "~2.4.1"
   }
 }

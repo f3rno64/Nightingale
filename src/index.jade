@@ -1,2 +1,58 @@
-h1 Welcome to Harp.
-h3 This is yours to own. Enjoy.
+doctype html
+html(lang="en")
+  head
+
+    meta(charset="utf-8")
+    title Nightingale
+
+    //- PaceJS
+    script(src="/components/pace/pace.min.js")
+    link(rel="stylesheet" href="/components/pace/themes/pace-theme-minimal.css")
+
+    | <!--[if IE]>
+    link(rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon")
+    | <![endif]-->
+
+    link(rel="icon" href="/img/favicon.png" type="image/png")
+
+    link(rel="stylesheet" href="/styles/vendor/reset.css")
+    link(rel="stylesheet" href="/styles/style.css")
+    link(rel="stylesheet" href="/components/fontawesome/css/font-awesome.min.css")
+
+  body
+    section
+      header.main
+        h1 Nightingale
+        .teaser An authentic twitter drafter
+
+    section
+      .sidebar
+        h3 Account
+        ul
+          a(href="#"): li Settings
+          a(href="#"): li Logout
+
+        h3 Tags
+        ul
+          a.active(href="#"): li Finance
+          a(href="#"): li Quotes
+          a(href="#"): li Productivity
+          a(href="#"): li Startups
+          a(href="#"): li Flames
+
+      .content-wrapper
+        header
+          h2 Finance
+          .controls
+            i.fa.fa-th-large
+            i.active.fa.fa-th-list
+
+    //- Vendor libs
+    script(src="/components/lodash/dist/lodash.min.js")
+    script(src="/components/angular/angular.min.js")
+    script(src="/components/angular-route/angular-route.min.js")
+
+    //- Typekit
+    script(src="//use.typekit.net/mse0mpp.js")
+    script.
+      try{Typekit.load();}catch(e){}
