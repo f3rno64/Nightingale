@@ -19,27 +19,26 @@ html(lang="en" ng-app="App")
     link(rel="stylesheet" href="/styles/style.css")
     link(rel="stylesheet" href="/components/fontawesome/css/font-awesome.min.css")
 
-  body
+  body(ng-controller="RootController")
     section
       header.main
         h1 Nightingale
         .subtitle An authentic twitter drafter
 
     section
-      .sidebar
+      .sidebar(ng-if="!loggedIn")
+        h3 Sign In
+
+      .sidebar(ng-if="loggedIn")
         h3 Account
         ul
-          a(href="#"): li Settings
-          a(href="#"): li Logout
+          a(href="/account"): li Settings
+          a(href="/logout"): li Logout
 
         h3 Tags
         ul
-          a(href="#"): li All
-          a(href="#"): li Finance
-          a(href="#"): li Quotes
-          a(href="#"): li Productivity
-          a.active(href="#"): li Startups
-          a(href="#"): li Flames
+          a(href="/tags/all"): li All
+          a(ng-href="/tags/{{ tag }}" ng-repeat="tag in tags"): li {{ tag }}
 
       .content-wrapper(ng-view="")
 
@@ -53,8 +52,13 @@ html(lang="en" ng-app="App")
     script(src="/app/service_cache.js")
 
     script(src="/app/app.js")
-    script(src="/app/factories/tag.js")
-    script(src="/app/services/tag.js")
+    script(src="/app/factories/tweet.js")
+
+    script(src="/app/services/tweet.js")
+    script(src="/app/services/user.js")
+
+    script(src="/app/controllers/root.js")
+    script(src="/app/controllers/account.js")
     script(src="/app/controllers/tag.js")
 
     //- Typekit

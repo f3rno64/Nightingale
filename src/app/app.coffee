@@ -6,7 +6,11 @@ angular.module("App").config ($routeProvider, $locationProvider) ->
   $locationProvider.hashPrefix "!"
 
   $routeProvider.when "/tag/:tag",
-    controller: "Tag"
+    controller: "TagController"
     templateUrl: "/views/tag"
+
+  $routeProvider.when "/account",
+    controller: "AccountController"
+    templateUrl: "/views/account"
 
   $routeProvider.otherwise { redirectTo: "/tag/all" }
