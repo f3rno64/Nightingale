@@ -26,10 +26,7 @@ html(lang="en" ng-app="App")
         .subtitle An authentic twitter drafter
 
     section
-      .sidebar(ng-if="!loggedIn")
-        h3 Sign In
-
-      .sidebar(ng-if="loggedIn")
+      .sidebar
         h3 Account
         ul
           a(href="/account"): li Settings

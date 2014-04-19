@@ -1,0 +1,13 @@
+---
+domain: localhost
+port: 9000
+loglevel: 10
+
+mongo_user: nightingale
+mongo_pass: XdBWymEvQ1tGyd6XSSxxpeBdm5QGKTga
+mongo_host: 127.0.0.1
+mongo_port: 45452
+mongo_db: nightingale_development
+
+twitter_consumer_key: "ByoXfCgvRhn6fNumg9ShfJcmW"
+twitter_consumer_secret: "WWJBPddXictlUZww21XotYFl7j9zkMgGKWS4ESoVCD6ixJPpgS"

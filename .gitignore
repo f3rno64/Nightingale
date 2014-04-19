@@ -1,1 +1,4 @@
-src/components
+src/client/components
+src/client/css
+src/client/js
+node_modules

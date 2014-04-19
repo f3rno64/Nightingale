@@ -1,0 +1,37 @@
+doctype html
+html(lang="en" ng-app="App")
+  head
+
+    meta(charset="utf-8")
+    title Nightingale
+
+    //- PaceJS
+    script(src="/components/pace/pace.min.js")
+    link(rel="stylesheet" href="/components/pace/themes/pace-theme-minimal.css")
+
+    | <!--[if IE]>
+    link(rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon")
+    | <![endif]-->
+
+    link(rel="icon" href="/img/favicon.png" type="image/png")
+
+    link(rel="stylesheet" href="/css/style.min.css")
+    link(rel="stylesheet" href="/components/fontawesome/css/font-awesome.min.css")
+
+  body
+    section
+      header.main
+        h1 Nightingale
+        .subtitle An authentic twitter drafter
+
+    section
+      .sidebar
+        h3 Sign In
+
+      .content-wrapper
+        a(href="/auth/twitter") Sign in with Twitter
+
+    //- Typekit
+    script(src="//use.typekit.net/mse0mpp.js")
+    script.
+      try{Typekit.load();}catch(e){}
