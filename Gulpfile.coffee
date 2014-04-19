@@ -32,7 +32,7 @@ gulp.task "watch", ->
 gulp.task "server", ->
   nodemon
     script: "src/server/server.coffee"
-    options: "--watch src/server"
+    ignore: "src/client/**"
 
 # Build all of the assets
 gulp.task "build", ["stylus", "coffee"]

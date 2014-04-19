@@ -33,6 +33,7 @@ require("./init") app, ->
   require("./api/auth") app
   require("./api/tweets") app
   require("./api/app_views") app
+  require("./api/user") app
 
   app.get "/*", (req, res) -> res.send 404
   spew.init "Init complete!"

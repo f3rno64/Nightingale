@@ -1,12 +1,12 @@
-class ServiceCache
+class window.ServiceCache
 
   ###
   # Instantiates and clears the cache
   #
-  # @param [String] trackingKey key to track items by, usually 'id'
+  # @param [String] trackingKey key to track items by, defaults to 'id'
   ###
   constructor: (trackingKey) ->
-    @_tracker = trackingKey
+    @_tracker = trackingKey or "id"
     @clear()
 
   ###

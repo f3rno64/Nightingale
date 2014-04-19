@@ -26,4 +26,18 @@ class APITweets extends APIBase
   ###
   registerRoutes: ->
 
+    ###
+    # GET /api/v1/tweets
+    #   Returns a list of all owned Tweets
+    # @response [Array<Object>] Tweets a list of Tweets
+    # @example
+    #   $.ajax method: "GET",
+    #          url: "/api/v1/tweets"
+    ###
+    @app.get "/api/v1/tweets", @apiLogin, (req, res) =>
+      @queryOwner req.user.id, res, (tweets) ->
+        return res.json 200, [] if tweets.length == 0
+
+        res.json _.map tweets, (t) -> t.toAnonAPI()
+
 module.exports = (app) -> new APITweets app
