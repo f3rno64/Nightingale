@@ -1,9 +1,12 @@
 angular.module("App").controller "TagController", ($scope, $routeParams, TweetService, UserService, $location) ->
 
+  capitalize = (s) ->
+    "#{s[0].toUpperCase()}#{s[1...].toLowerCase()}"
+
   $scope.tweets = []
+  $scope.tag = capitalize $routeParams.tag
 
   refreshTweets = ->
-    console.log "Got refresh request"
     TweetService.getAllTweets (tweets) ->
 
       if $routeParams.tag.toLowerCase() == "all"

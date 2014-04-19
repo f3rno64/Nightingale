@@ -36,7 +36,7 @@ html(lang="en" ng-app="App")
         h3 Tags
         ul
           a(href="/tags/all"): li All
-          a(ng-href="/tags/{{ tag }}" ng-repeat="tag in tags"): li {{ tag }}
+          a(ng-href="/tag/{{ tag }}" ng-repeat="tag in tags"): li {{ tag }}
 
       .content-wrapper
 
