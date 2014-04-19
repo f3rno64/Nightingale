@@ -45,6 +45,8 @@ html(lang="en")
           h2 Startups
           .subtitle 5 sizzling drafts
 
+          img.right(src="https://pbs.twimg.com/profile_images/446610898900115457/TTM9XNng_bigger.png" height="48")
+
         ul
           li.tweet
             p
@@ -55,12 +57,23 @@ html(lang="en")
               li: a(href="#") #startups
               li: a(href="#") #books
 
-          li.tweet
+            ul.actions
+              li: a(href="#") tweet
+              li: a(href="#") edit
+
+          li.tweet.image-preview
             p Crowdsourcing will soon be embedded in every online activity.
+
+            .image-container.minimized
+              img(src="https://pbs.twimg.com/media/BlklIZECIAA-cry.jpg")
 
             ul.tags
               li: a(href="#") #startups
               li: a(href="#") #opinion
+
+            ul.actions
+              li: a(href="#") tweet
+              li: a(href="#") edit
 
           li.tweet
             p
@@ -72,6 +85,10 @@ html(lang="en")
               li: a(href="#") #startups
               li: a(href="#") #questions
               li: a(href="#") #research
+
+            ul.actions
+              li: a(href="#") tweet
+              li: a(href="#") edit
 
           li.tweet
             p
@@ -86,6 +103,10 @@ html(lang="en")
               li: a(href="#") #startups
               li: a(href="#") #books
 
+            ul.actions
+              li: a(href="#") tweet
+              li: a(href="#") edit
+
           li.tweet
             p
               | &ldquo;I am reading "The Hard Thing About Hard Things" along with another CEO, it is really the best book on startups. Training section 
@@ -95,6 +116,10 @@ html(lang="en")
             ul.tags
               li: a(href="#") #startups
               li: a(href="#") #books
+
+            ul.actions
+              li: a(href="#") tweet
+              li: a(href="#") edit
 
     //- Vendor libs
     script(src="/components/lodash/dist/lodash.min.js")

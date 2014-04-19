@@ -12,10 +12,11 @@
     a
       text-decoration underline
 
-  .tags
-    display block
+  .tags, .actions
     margin-top 16px
-    color #aaa
+    display inline-block
+    vertical-align bottom
+    width 50%
     font-size 18px
 
     li
@@ -25,3 +26,34 @@
 
       &:first-child
         margin-left 0
+
+  .tags
+    color #aaa
+
+  .actions
+    color #333
+
+    li
+      float right
+
+      margin-left 0
+      margin-right 16px
+
+      &:first-child
+        margin-right 0
+
+.tweet.image-preview
+  .image-container
+    width 100%
+    overflow hidden
+    margin-top 8px
+    border-radius 8px
+
+    img
+      width 100%
+
+    &.minimized
+      max-height 256px
+
+      img
+        margin-top -200px
