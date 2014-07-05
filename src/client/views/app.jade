@@ -50,10 +50,10 @@ html(lang="en" ng-app="App")
               h2 Edit draft
               .subtitle Make it pop :)
 
-            .subtitle.right {{ getFormRemainingChars() }}
+            .subtitle.right(ng-class="{ red: getFormRemainingChars() < 0 }") {{ getFormRemainingChars() }}
 
           .tweet.compose
-            textarea(maxlength="140" rows="4" placeholder="Enter tweet" ng-model="newTweet.content")
+            textarea(rows="4" placeholder="Enter tweet" ng-model="newTweet.content")
 
             .tags: input(type="text" placeholder="Enter tags" ng-model="newTweet.unsplitTags")
 
@@ -68,6 +68,7 @@ html(lang="en" ng-app="App")
     script(src="/components/angular/angular.min.js")
     script(src="/components/angular-route/angular-route.min.js")
     script(src="/components/angular-resource/angular-resource.min.js")
+    script(src="/components/twitter-text/pkg/twitter-text-1.9.0.min.js")
 
     //- App
     script(src="/js/service_cache.js")

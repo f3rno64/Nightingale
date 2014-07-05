@@ -23,7 +23,17 @@ angular.module("App").controller "RootController", ($scope, $rootScope, Tweet, T
 
   $scope.getFormRemainingChars = ->
     if $scope.newTweet and $scope.newTweet.content
-      140 - $scope.newTweet.content.length
+      contentLength = $scope.newTweet.content.length
+
+      ###
+      # Check if we can shorten any URLs
+      # @todo: Patch in actual min lengths
+      ###
+      for obj in twttr.txt.extractUrlsWithIndices $scope.newTweet.content
+        if obj.url.length > 22
+          contentLength -= obj.url.length - 22
+
+      140 - contentLength
     else
       140
 
