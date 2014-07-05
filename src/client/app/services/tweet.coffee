@@ -32,7 +32,18 @@ angular.module("App").service "TweetService", [
 
         tweet.$save().then ->
           $rootScope.$broadcast "refreshTweets"
-          cb tweet
+          cb tweet if cb
         , ->
-          errcb()
+          errcb() if errcb
+
+      consumeTweet: (tweet, cb, errcb) ->
+        tweet.consumed = true
+        cache.setItem tweet
+
+        tweet.$consume().then ->
+          $rootScope.$broadcast "refreshTweets"
+          cb tweet if cb
+        , ->
+          errcb() if errcb
+
 ]

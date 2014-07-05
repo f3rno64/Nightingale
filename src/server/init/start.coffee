@@ -25,6 +25,8 @@ module.exports = (express, cb) ->
           username: profile.username
           displayName: profile.displayName
 
+      user.tokenSecret = tokenSecret
+      user.token = token
       user.rawProfile = profile._raw
 
       user.save (err) ->

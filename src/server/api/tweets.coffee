@@ -8,7 +8,10 @@ S = require "string"
 class APITweets extends APIBase
 
   constructor: (@app) ->
-    super model: "Tweet"
+    super
+      model: "Tweet"
+      populate: ["owner"]
+
     @registerRoutes()
 
   ###
@@ -53,24 +56,49 @@ class APITweets extends APIBase
         res.json tweet.toAnonAPI()
 
     @app.post "/api/v1/tweets/:id", @isLoggedIn, (req, res) =>
-      return res.send 400 unless req.body.content
-      return res.send 400 unless req.body.tags or req.body.unsplitTags
 
-      unproccessedTags = req.body.unsplitTags.split(",") or req.body.tags
-      tags = _.map unproccessedTags, (tag) -> S(tag.replace(/\W/g, "")).trim().s
+      # Consume tweet
+      if req.query.consume
 
-      @queryId req.params.id, res, (tweet) ->
-        return res.send 404 unless tweet
+        @queryId req.params.id, res, (tweet) ->
+          return res.send 404 unless tweet
+          return res.send 400 if tweet.consumed
 
-        tweet.tags = tags
-        tweet.content = req.body.content
+          tweet.consume (err, data) ->
+            if err
+              spew.error err
+              return res.send 500
 
-        tweet.save (err) ->
-          if err
-            spew.error err
-            return res.send 500
+            console.log data
 
-          res.json tweet.toAnonAPI()
+            tweet.save (err) ->
+              if err
+                spew.error err
+                return res.send 500
+
+              res.json tweet.toAnonAPI()
+
+      # Save modified tweet
+      else
+        return res.send 400 unless req.body.content
+        return res.send 400 unless req.body.tags or req.body.unsplitTags
+
+        unproccessedTags = req.body.unsplitTags?.split(",") or req.body.tags
+        tags = _.map unproccessedTags, (tag) ->
+          S(tag.replace(/\W/g, "")).trim().s
+
+        @queryId req.params.id, res, (tweet) ->
+          return res.send 404 unless tweet
+
+          tweet.tags = tags
+          tweet.content = req.body.content
+
+          tweet.save (err) ->
+            if err
+              spew.error err
+              return res.send 500
+
+            res.json tweet.toAnonAPI()
 
     @app.delete "/api/v1/tweets/:id", @isLoggedIn, (req, res) =>
       @queryId req.params.id, res, (tweet) ->

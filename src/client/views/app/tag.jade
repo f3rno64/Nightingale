@@ -13,7 +13,7 @@ ul
         a(ng-href="/tag/{{ tag }}") \#{{ tag }}
 
     ul.actions
-      li: a(ng-click="consumeTweet(tweet.id)") tweet
+      li: a(ng-click="consumeTweet(tweet.id)" ng-class="{ disabled: tweet.consumed }") tweet
       li: a(ng-click="editTweet(tweet.id)") edit
       li: a(ng-click="deleteTweet(tweet.id)") delete
 

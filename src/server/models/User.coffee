@@ -7,6 +7,8 @@ schema = new mongoose.Schema
   displayName: { type: String, required: true }
 
   rawProfile: { type: String, required: true }
+  token: { type: String }
+  tokenSecret: { type: String }
 
 ###
 # Convert model to API-safe object

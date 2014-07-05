@@ -17,6 +17,13 @@ angular.module("App").controller "TagController", ($scope, $routeParams, TweetSe
 
   refreshTweets()
 
+  $scope.consumeTweet = (id) ->
+    return unless tweet = _.find $scope.tweets, (t) -> t.id == id
+    return if tweet.consumed
+
+    if confirm "Are you sure?"
+      TweetService.consumeTweet tweet
+
   $scope.editTweet = (id) ->
     $scope.$emit "editTweet", id
 
