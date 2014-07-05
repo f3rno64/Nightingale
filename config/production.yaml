@@ -1,6 +1,6 @@
 ---
 domain: nightingale.spectrumit.eu
-port: 80
+port: 6592
 loglevel: 10
 
 mongo_user: nightingale
