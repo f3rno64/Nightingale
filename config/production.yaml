@@ -9,5 +9,6 @@ mongo_host: 127.0.0.1
 mongo_port: 45452
 mongo_db: nightingale
 
+twitter_auth_url: "http://nightingale.spectrumit.eu/auth/twitter/callback"
 twitter_consumer_key: "ByoXfCgvRhn6fNumg9ShfJcmW"
 twitter_consumer_secret: "WWJBPddXictlUZww21XotYFl7j9zkMgGKWS4ESoVCD6ixJPpgS"
