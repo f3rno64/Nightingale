@@ -6,7 +6,7 @@ loglevel: 10
 mongo_user: nightingale
 mongo_pass: XdBWymEvQ1tGyd6XSSxxpeBdm5QGKTga
 mongo_host: 127.0.0.1
-mongo_port: 45452
+mongo_port: 27017
 mongo_db: nightingale
 
 twitter_auth_url: "http://nightingale.spectrumit.eu/auth/twitter/callback"
