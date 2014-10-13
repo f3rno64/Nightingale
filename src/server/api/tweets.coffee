@@ -66,10 +66,10 @@ class APITweets extends APIBase
 
           tweet.consume (err, data) ->
             if err
-              spew.error err
-              return res.send 500
+              spew.error JSON.stringify err
+              return res.json 500, JSON.parse(err.data).errors
 
-            console.log data
+            tweet.consumed_date = Date.now()
 
             tweet.save (err) ->
               if err

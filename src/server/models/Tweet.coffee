@@ -3,10 +3,11 @@ config = require "../config"
 OAuth = require("oauth").OAuth
 
 schema = new mongoose.Schema
-  owner: { type: mongoose.Schema.Types.ObjectId, ref: "User" }
-  content: { type: String, required: true }
+  owner: type: mongoose.Schema.Types.ObjectId, ref: "User"
+  content: type: String, required: true
   tags: [{ type: String }]
-  consumed: { type: Boolean, default: false }
+  consumed: type: Boolean, default: false
+  consumed_date: type: Number
 
 ###
 # Convert model to API-safe object

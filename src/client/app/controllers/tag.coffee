@@ -1,4 +1,4 @@
-angular.module("App").controller "TagController", ($scope, $routeParams, TweetService, UserService, $location) ->
+angular.module("App").controller "TagController", ($scope, $routeParams, TweetService, UserService, $location, NotificationService) ->
 
   capitalize = (s) ->
     "#{s[0].toUpperCase()}#{s[1...].toLowerCase()}"
@@ -22,7 +22,15 @@ angular.module("App").controller "TagController", ($scope, $routeParams, TweetSe
     return if tweet.consumed
 
     if confirm "Are you sure?"
-      TweetService.consumeTweet tweet
+      NotificationService.setNotification "Tweeting...", "", false
+      TweetService.consumeTweet tweet, ->
+        NotificationService.setNotification "Tweet sent!", "green"
+
+      # We get an array of errors, but only display the first one
+      , (errors) ->
+        alert "Error: #{errors[0].message}"
+
+        NotificationService.setNotification errors[0].message, "red"
 
   $scope.editTweet = (id) ->
     $scope.$emit "editTweet", id

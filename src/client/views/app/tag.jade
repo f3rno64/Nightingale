@@ -5,7 +5,7 @@ header
   img.right(src="https://pbs.twimg.com/profile_images/446610898900115457/TTM9XNng_bigger.png" height="48")
 
 ul
-  li.tweet(ng-repeat="tweet in tweets")
+  li.tweet(ng-repeat="tweet in tweets" ng-class="{ disabled: tweet.consumed }")
     p {{ tweet.content }}
 
     ul.tags
@@ -13,6 +13,10 @@ ul
         a(ng-href="/tag/{{ tag }}") \#{{ tag }}
 
     ul.actions
-      li: a(ng-click="consumeTweet(tweet.id)" ng-class="{ disabled: tweet.consumed }") tweet
-      li: a(ng-click="editTweet(tweet.id)") edit
+      div(ng-if="!tweet.consumed")
+        li: a(ng-click="consumeTweet(tweet.id)") tweet
+        li: a(ng-click="editTweet(tweet.id)") edit
+      div(ng-if="tweet.consumed")
+        li sent {{ tweet.consumed_date_str }}
+
       li: a(ng-click="deleteTweet(tweet.id)") delete
